@@ -959,6 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Listener: {fileID: 0}
+  source: {fileID: 0}
   stickOne: {fileID: 449197464}
   stickTwo: {fileID: 169167249}
   Color: 0
@@ -971,6 +972,10 @@ MonoBehaviour:
   SpeedMod_Max1: 0
   SpeedMod_Min2: 25
   SpeedMod_Max2: 1
+  PitchMod_Min1: 40
+  PitchMod_Max1: 0
+  PitchMod_Min2: 0.2
+  PitchMod_Max2: 1.2
 --- !u!120 &1997834134
 LineRenderer:
   m_ObjectHideFlags: 0

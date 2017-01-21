@@ -8,6 +8,8 @@ public class Sticker : MonoBehaviour {
     float[] samples;
     public static float[] currentValues;
 
+    public AudioSource source;
+
     public Transform stickOne;
     public Transform stickTwo;
 
@@ -23,15 +25,21 @@ public class Sticker : MonoBehaviour {
     public float SineLerpPower = 1.65f;
     public float SineSpeed = 6f;
 
-
+    [Header( "Speed mod" )]
     public float SpeedMod_Min1 = 40;
     public float SpeedMod_Max1 = 0;
     public float SpeedMod_Min2 = 1;
     public float SpeedMod_Max2 = 25;
+    [Header( "Pitch mod" )]
+    public float PitchMod_Min1 = 0;
+    public float PitchMod_Max1 = 20;
+    public float PitchMod_Min2 = 0;
+    public float PitchMod_Max2 = 1;
 
     void Start() {
         Listener = GetComponent<AudioListener>();
         renderer = GetComponent<LineRenderer>();
+        source = GetComponent<AudioSource>();
 
         renderer.numPositions = 100;
         UpdateColor( Color );
@@ -104,6 +112,7 @@ public class Sticker : MonoBehaviour {
         var maxDist = diff.magnitude;
 
         Asteroid.Mod = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, SpeedMod_Min2, SpeedMod_Max2 );
+        source.pitch = mapRange( maxDist, PitchMod_Min1, PitchMod_Max1, PitchMod_Min2, PitchMod_Max2 );
 
         var freq = mapRange( diff.magnitude, 20, 1, 0, 2 ) * 0.5f;
         freq = Mathf.Clamp( freq, 0, 2 );
