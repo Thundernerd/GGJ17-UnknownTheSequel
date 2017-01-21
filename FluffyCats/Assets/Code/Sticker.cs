@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Sticker : MonoBehaviour {
 
+    public AudioListener Listener;
+    float[] samples;
+    public static float[] currentValues;
+
     public Transform stickOne;
     public Transform stickTwo;
 
@@ -26,17 +30,53 @@ public class Sticker : MonoBehaviour {
     public float SpeedMod_Max2 = 25;
 
     void Start() {
+        Listener = GetComponent<AudioListener>();
         renderer = GetComponent<LineRenderer>();
 
         renderer.numPositions = 100;
         UpdateColor( Color );
+
+
+        samples = new float[512];
+
+        currentValues = new float[8];
+
+        StartCoroutine( analyzeAudio() );
+    }
+
+    IEnumerator analyzeAudio() {
+        while ( true ) {
+            yield return new WaitForSeconds( 1 / 15.0f );
+
+            AudioListener.GetSpectrumData( samples, 0, FFTWindow.BlackmanHarris );
+            var count = 0;
+            float diff = 0;
+            for ( int i = 0; i < 8; ++i ) {
+                float average = 0;
+
+                int sampleCount = (int)Mathf.Pow( 2, i ) * 2;
+                for ( int j = 0; j < sampleCount; ++j ) {
+                    average += samples[count] * ( count + 1 );
+                    ++count;
+                }
+                average /= samples.Length;
+                diff = Mathf.Clamp( average * 10.0f - currentValues[i], 0, 4 );
+                currentValues[i] = average * 10;
+            }
+        }
     }
 
     float mapRange( float value, float low1, float high1, float low2, float high2 ) {
         return low2 + ( high2 - low2 ) * ( value - low1 ) / ( high1 - low1 );
     }
 
+    void audioStuff() {
+        Debug.Log( currentValues[0] );
+    }
+
     void Update() {
+        audioStuff();
+
         if ( Input.GetButtonDown( "Fire1" ) ) {
             var c = (int)Color;
             c--;
@@ -67,6 +107,7 @@ public class Sticker : MonoBehaviour {
 
         var freq = mapRange( diff.magnitude, 20, 1, 0, 2 ) * 0.5f;
         freq = Mathf.Clamp( freq, 0, 2 );
+        freq *= currentValues[3] * 100;
 
         var step = diff / ( renderer.numPositions - 1 );
         for ( int i = 0; i < renderer.numPositions; i++ ) {
