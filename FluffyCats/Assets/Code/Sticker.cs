@@ -120,7 +120,9 @@ public class Sticker : MonoBehaviour {
         Asteroid.Mod = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, SpeedMod_Min2, SpeedMod_Max2 );
         source.pitch = mapRange( maxDist, PitchMod_Min1, PitchMod_Max1, PitchMod_Min2, PitchMod_Max2 );
 
-        blur.blurAmount = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, BlurMinimum, BlurMaximum );
+        if(blur != null ) {
+            blur.blurAmount = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, BlurMinimum, BlurMaximum );
+        }        
 
         var freq = mapRange( diff.magnitude, 20, 1, 0, 2 ) * 0.5f;
         freq = Mathf.Clamp( freq, 0, 2 );
