@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Color: 0
-  Speed: 0.5
+  Speed: 0.4
   BlackHoleMass: 100
   strengthOfAttraction: 5
 --- !u!135 &135108854249964584

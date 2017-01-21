@@ -11,6 +11,9 @@ public class Mover : MonoBehaviour {
     [Range( 0.01f, 1 )]
     public float Drag = 0.5f;
 
+    public float Radius = 7f;
+    public float RSpeed = 1f;
+
     public Vector3 Direction {
         get { return new Vector3( h, v, 0 ); }
     }
@@ -24,6 +27,11 @@ public class Mover : MonoBehaviour {
 
     private Rigidbody body;
 
+    public bool Mode = false;
+    public Vector3 ModePosition;
+
+    public Mover Other;
+
     // Use this for initialization
     void Start() {
         body = GetComponent<Rigidbody>();
@@ -31,24 +39,39 @@ public class Mover : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if ( pushTimer > 0 ) {
-            pushTimer -= Time.deltaTime;
-            if ( pushTimer < 0 ) {
-                beingPushed = false;
+        if( !Mode ) {
+            if ( pushTimer > 0 ) {
+                pushTimer -= Time.deltaTime;
+                if ( pushTimer < 0 ) {
+                    beingPushed = false;
+                }
             }
-        }
 
-        if ( beingPushed ) {
-            h = Mathf.Lerp( h, 0, Drag );
-            v = Mathf.Lerp( v, 0, Drag );
-            transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+            if ( beingPushed ) {
+                h = Mathf.Lerp( h, 0, Drag );
+                v = Mathf.Lerp( v, 0, Drag );
+                transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+            } else {
+                h = Mathf.Lerp( h, Input.GetAxis( HAxis ), Drag );
+                v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
+
+                transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+            }
         } else {
-            h = Mathf.Lerp( h, Input.GetAxis( HAxis ), Drag );
-            v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
+            var pos = new Vector3( Mathf.Cos( Time.realtimeSinceStartup * RSpeed ) * Radius,
+                                    Mathf.Sin( Time.realtimeSinceStartup * RSpeed ) * Radius, 0 );
 
-            transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+            transform.position = ModePosition + pos;
         }
+    }
 
+    public void SwitchMode() {
+        //Mode = !Mode;
+        //if( Mode ) {
+        //    ModePosition = transform.position;
+        //    Radius = ( Other.transform.position - transform.position ).magnitude;
+        //    ModePosition -= ( Other.transform.position - transform.position );
+        //}
     }
 
     public void Push( Vector3 direction ) {

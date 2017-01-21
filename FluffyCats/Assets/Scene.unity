@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 169167251}
   - component: {fileID: 169167250}
   - component: {fileID: 169167252}
+  - component: {fileID: 169167253}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Player
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 169167245}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af8f49760dffa84a94aedf4dfd030fa, type: 3}
   m_Name: 
@@ -206,6 +207,11 @@ MonoBehaviour:
   VAxis: Vertical2
   Speed: 20
   Drag: 0.1
+  Radius: 7
+  RSpeed: 1
+  Mode: 1
+  ModePosition: {x: 0, y: 0, z: 0}
+  Other: {fileID: 449197466}
 --- !u!96 &169167252
 TrailRenderer:
   serializedVersion: 2
@@ -310,6 +316,19 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &169167253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 169167245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f27245a9b9b2cf4f8d841d3e48382ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 7
+  Speed: 1
 --- !u!1 &449197460
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +444,11 @@ MonoBehaviour:
   VAxis: Vertical
   Speed: 20
   Drag: 0.1
+  Radius: 7
+  RSpeed: 1
+  Mode: 0
+  ModePosition: {x: 0, y: 0, z: 0}
+  Other: {fileID: 169167251}
 --- !u!96 &449197467
 TrailRenderer:
   serializedVersion: 2
@@ -663,7 +687,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 812817997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.82}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 3.0671544, y: 3.067155, z: 3.067155}
   m_Children: []
   m_Father: {fileID: 0}
@@ -943,8 +967,8 @@ MonoBehaviour:
   SineSpeed: 6
   SpeedMod_Min1: 40
   SpeedMod_Max1: 0
-  SpeedMod_Min2: 1
-  SpeedMod_Max2: 25
+  SpeedMod_Min2: 25
+  SpeedMod_Max2: 1
 --- !u!120 &1997834134
 LineRenderer:
   m_ObjectHideFlags: 0

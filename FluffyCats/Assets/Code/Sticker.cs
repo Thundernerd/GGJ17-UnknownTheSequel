@@ -53,6 +53,12 @@ public class Sticker : MonoBehaviour {
             UpdateColor( (Colors)c );
         }
 
+        //if(Input.GetButtonDown("Switch")) {
+        //    Debug.Log( "Switch" );
+        //    stickOne.GetComponent<Mover>().SwitchMode();
+        //    stickTwo.GetComponent<Mover>().SwitchMode();
+        //}
+
         var diff = stickTwo.position - stickOne.position;
         var middle = stickOne.transform.position + diff / 2f;
         var maxDist = diff.magnitude;
