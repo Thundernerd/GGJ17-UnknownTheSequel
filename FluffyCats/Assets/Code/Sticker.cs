@@ -37,12 +37,6 @@ public class Sticker : MonoBehaviour {
     }
 
     void Update() {
-        //var h1 = Input.GetAxis( "Horizontal" );
-        //var h2 = Input.GetAxis( "Horizontal2" );
-
-        //var v1 = Input.GetAxis( "Vertical" );
-        //var v2 = Input.GetAxis( "Vertical2" );
-
         if ( Input.GetButtonDown( "Fire1" ) ) {
             var c = (int)Color;
             c--;
@@ -58,9 +52,6 @@ public class Sticker : MonoBehaviour {
             }
             UpdateColor( (Colors)c );
         }
-
-        //stickOne.transform.position += new Vector3( h1, v1 ) * MovementSpeed * Time.deltaTime;
-        //stickTwo.transform.position += new Vector3( h2, v2 ) * MovementSpeed * Time.deltaTime;
 
         var diff = stickTwo.position - stickOne.position;
         var middle = stickOne.transform.position + diff / 2f;
@@ -84,14 +75,20 @@ public class Sticker : MonoBehaviour {
             renderer.SetPosition( i, p );
         }
 
-        //var r = new Ray( stickOne.position, diff.normalized );
-        //RaycastHit hit;
-        //if ( Physics.Raycast( r, out hit, diff.magnitude - 1 ) ) {
-        //    var other = hit.collider.gameObject;
-        //    var a = other.GetComponent<Asteroid>();
-        //    if ( a.Color == Color )
-        //        Destroy( hit.collider.gameObject );
-        //}
+        var r = new Ray( stickOne.position, diff.normalized );
+        RaycastHit hit;
+        if ( Physics.Raycast( r, out hit, diff.magnitude - 1 ) ) {
+            var other = hit.collider.gameObject;
+            var a = other.GetComponent<Asteroid>();
+            if ( a != null ) {
+                if ( a.Color == Color ) {
+                    // Explooosion
+                    Destroy( hit.collider.gameObject );
+                } else {
+                    iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
+                }
+            }
+        }
     }
 
     void UpdateColor( Colors color ) {
