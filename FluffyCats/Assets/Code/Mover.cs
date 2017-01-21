@@ -32,14 +32,23 @@ public class Mover : MonoBehaviour {
 
     public Mover Other;
 
+    private float scale = 1;
+    private Vector3 vscale = new Vector3();
+
     // Use this for initialization
     void Start() {
+        scale = transform.localScale.x;
+        vscale.Set( scale, scale, scale );
         body = GetComponent<Rigidbody>();
+    }
+
+    float mapRange( float value, float low1, float high1, float low2, float high2 ) {
+        return low2 + ( high2 - low2 ) * ( value - low1 ) / ( high1 - low1 );
     }
 
     // Update is called once per frame
     void Update() {
-        if( !Mode ) {
+        if ( !Mode ) {
             if ( pushTimer > 0 ) {
                 pushTimer -= Time.deltaTime;
                 if ( pushTimer < 0 ) {
@@ -55,6 +64,12 @@ public class Mover : MonoBehaviour {
                 h = Mathf.Lerp( h, Input.GetAxis( HAxis ), Drag );
                 v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
 
+                var t = new Vector2( h, v );
+                scale = mapRange( t.magnitude, 0, 1, 1, 1.5f );
+                vscale.Set( scale, scale, scale );
+                transform.localScale = vscale;
+
+                transform.localScale = vscale;
                 transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
             }
         } else {
