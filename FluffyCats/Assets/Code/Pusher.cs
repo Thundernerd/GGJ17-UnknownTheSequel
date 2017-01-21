@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class Pusher : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public bool Horizontal;
+
+    private void OnCollisionEnter( Collision collision ) {
+        if ( collision.gameObject.tag.Equals( "Player" ) ) {
+            var n = collision.contacts[0].normal;
+            var d = collision.gameObject.GetComponent<Mover>().Direction;
+            var c = Vector3.Cross( n, d );
+        }
+    }
+
+    private void OnTriggerEnter( Collider other ) {
+        if ( other.tag.Equals( "Player" ) ) {
+            var mover = other.GetComponent<Mover>();
+            var dir = mover.Direction;
+            if ( Horizontal ) {
+                dir.x *= -1;
+            } else {
+                dir.y *= -1;
+            }
+            mover.Push( dir );
+        }
+    }
 }

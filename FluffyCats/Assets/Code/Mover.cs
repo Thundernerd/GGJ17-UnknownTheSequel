@@ -18,6 +18,9 @@ public class Mover : MonoBehaviour {
     private float v = 0;
     private float h = 0;
 
+    private bool beingPushed = false;
+    private float pushTimer = 0;
+    private Vector3 pushDirection;
 
     private Rigidbody body;
 
@@ -28,9 +31,30 @@ public class Mover : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
-        h = Mathf.Lerp( h, Input.GetAxis( HAxis ), Drag );
+        if ( pushTimer > 0 ) {
+            pushTimer -= Time.deltaTime;
+            if ( pushTimer < 0 ) {
+                beingPushed = false;
+            }
+        }
 
-        transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+        if ( beingPushed ) {
+            h = Mathf.Lerp( h, 0, Drag );
+            v = Mathf.Lerp( v, 0, Drag );
+            transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+        } else {
+            h = Mathf.Lerp( h, Input.GetAxis( HAxis ), Drag );
+            v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
+
+            transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+        }
+
+    }
+
+    public void Push( Vector3 direction ) {
+        h = direction.x;
+        v = direction.y;
+        beingPushed = true;
+        pushTimer = 0.25f;
     }
 }
