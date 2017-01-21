@@ -198,7 +198,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 169167245}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af8f49760dffa84a94aedf4dfd030fa, type: 3}
   m_Name: 
@@ -209,7 +209,7 @@ MonoBehaviour:
   Drag: 0.1
   Radius: 7
   RSpeed: 1
-  Mode: 1
+  Mode: 0
   ModePosition: {x: 0, y: 0, z: 0}
   Other: {fileID: 449197466}
 --- !u!96 &169167252
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 169167245}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f27245a9b9b2cf4f8d841d3e48382ad, type: 3}
   m_Name: 

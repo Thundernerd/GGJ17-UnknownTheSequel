@@ -6,13 +6,16 @@ public class Spawner : MonoBehaviour {
 
     public GameObject Prefab;
 
+    public float MinSpawnTime = 0.5f;
+    public float MaxSpawnTime = 1.5f;
+
     // Use this for initialization
     void Start() {
         StartCoroutine( SpawnObj() );
     }
 
     IEnumerator SpawnObj() {
-        var rnd = Random.Range( 0.75f, 2 );
+        var rnd = Random.Range( MinSpawnTime, MaxSpawnTime );
         yield return new WaitForSeconds( rnd );
 
         var angle = Random.Range( 0, 360 ) * Mathf.Deg2Rad;

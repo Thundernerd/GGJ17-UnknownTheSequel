@@ -22,22 +22,22 @@ public class Asteroid : MonoBehaviour {
     void Start() {
         body = GetComponent<Rigidbody>();
 
-        Color = (Colors)Random.Range( 0, System.Enum.GetValues( typeof( Colors ) ).Length );
+        //Color = (Colors)Random.Range( 0, System.Enum.GetValues( typeof( Colors ) ).Length );
 
-        switch ( Color ) {
-            case Colors.Red:
-                //GetComponent<MeshRenderer>().material.color = new Color( 1, 0, 0 );
-                GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 1, 0, 0 ) );
-                break;
-            case Colors.Blue:
-                //GetComponent<MeshRenderer>().material.color = new Color( 0, 0, 1 );
-                GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 0, 0, 1 ) );
-                break;
-            case Colors.Yellow:
-                //GetComponent<MeshRenderer>().material.color = new Color( 1, 1, 0 );
-                GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 1, 1, 0 ) );
-                break;
-        }
+        //switch ( Color ) {
+        //    case Colors.Red:
+        //        //GetComponent<MeshRenderer>().material.color = new Color( 1, 0, 0 );
+        //        GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 1, 0, 0 ) );
+        //        break;
+        //    case Colors.Blue:
+        //        //GetComponent<MeshRenderer>().material.color = new Color( 0, 0, 1 );
+        //        GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 0, 0, 1 ) );
+        //        break;
+        //    case Colors.Yellow:
+        //        //GetComponent<MeshRenderer>().material.color = new Color( 1, 1, 0 );
+        //        GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 1, 1, 0 ) );
+        //        break;
+        //}
 
         var diff = -transform.position;
         var angle = Mathf.Atan2( diff.y, diff.x ) * Mathf.Rad2Deg;
