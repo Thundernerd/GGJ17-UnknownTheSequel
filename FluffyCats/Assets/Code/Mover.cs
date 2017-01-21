@@ -65,7 +65,7 @@ public class Mover : MonoBehaviour {
                 v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
 
                 var t = new Vector2( h, v );
-                scale = mapRange( t.magnitude, 0, 1, 1, 1.5f );
+                scale = mapRange( t.magnitude, 0, 1, 1, 2f );
                 vscale.Set( scale, scale, scale );
                 transform.localScale = vscale;
 

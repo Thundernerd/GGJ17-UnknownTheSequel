@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 public class Sticker : MonoBehaviour {
 
@@ -12,8 +13,6 @@ public class Sticker : MonoBehaviour {
 
     public Transform stickOne;
     public Transform stickTwo;
-
-    public Colors Color;
 
     new public LineRenderer renderer;
 
@@ -35,14 +34,18 @@ public class Sticker : MonoBehaviour {
     public float PitchMod_Min2 = 0;
     public float PitchMod_Max2 = 1;
 
+    public float BlurMinimum = 0.1f;
+    public float BlurMaximum = 0.8f;
+
+    private MotionBlur blur;
+
     void Start() {
         Listener = GetComponent<AudioListener>();
         renderer = GetComponent<LineRenderer>();
         source = GetComponent<AudioSource>();
+        blur = GetComponent<MotionBlur>();
 
         renderer.numPositions = 100;
-        UpdateColor( Color );
-
 
         samples = new float[512];
 
@@ -83,28 +86,6 @@ public class Sticker : MonoBehaviour {
     void Update() {
         audioStuff();
 
-        if ( Input.GetButtonDown( "Fire1" ) ) {
-            var c = (int)Color;
-            c--;
-            if ( c < 0 ) {
-                c = System.Enum.GetValues( typeof( Colors ) ).Length - 1;
-            }
-            UpdateColor( (Colors)c );
-        } else if ( Input.GetButtonDown( "Fire2" ) ) {
-            var c = (int)Color;
-            c++;
-            if ( c > System.Enum.GetValues( typeof( Colors ) ).Length - 1 ) {
-                c = 0;
-            }
-            UpdateColor( (Colors)c );
-        }
-
-        //if(Input.GetButtonDown("Switch")) {
-        //    Debug.Log( "Switch" );
-        //    stickOne.GetComponent<Mover>().SwitchMode();
-        //    stickTwo.GetComponent<Mover>().SwitchMode();
-        //}
-
         var diff = stickTwo.position - stickOne.position;
         var middle = stickOne.transform.position + diff / 2f;
         var maxDist = diff.magnitude;
@@ -116,6 +97,10 @@ public class Sticker : MonoBehaviour {
         Asteroid.Mod = SpeedMod_Curve.Evaluate( mod );
 
         source.pitch = mapRange( maxDist, PitchMod_Min1, PitchMod_Max1, PitchMod_Min2, PitchMod_Max2 );
+
+        if(blur != null ) {
+            blur.blurAmount = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, BlurMinimum, BlurMaximum );
+        }        
 
         var freq = mapRange( diff.magnitude, 20, 1, 0, 2 ) * 0.5f;
         freq = Mathf.Clamp( freq, 0, 2 );
@@ -140,28 +125,8 @@ public class Sticker : MonoBehaviour {
             var other = hit.collider.gameObject;
             var a = other.GetComponent<Asteroid>();
             if ( a != null ) {
-                if ( a.Color == Color ) {
-                    // Explooosion
-                    Destroy( hit.collider.gameObject );
-                } else {
-                    iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
-                }
+                iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
             }
         }
-    }
-
-    void UpdateColor( Colors color ) {
-        switch ( color ) {
-            case Colors.Red:
-                GetComponent<LineRenderer>().material.color = new Color( 1, 0, 0 );
-                break;
-            case Colors.Blue:
-                GetComponent<LineRenderer>().material.color = new Color( 0, 0, 1 );
-                break;
-            case Colors.Yellow:
-                GetComponent<LineRenderer>().material.color = new Color( 1, 1, 0 );
-                break;
-        }
-        Color = color;
     }
 }
