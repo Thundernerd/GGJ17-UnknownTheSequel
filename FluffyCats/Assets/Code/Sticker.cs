@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 public class Sticker : MonoBehaviour {
 
@@ -36,10 +37,16 @@ public class Sticker : MonoBehaviour {
     public float PitchMod_Min2 = 0;
     public float PitchMod_Max2 = 1;
 
+    public float BlurMinimum = 0.1f;
+    public float BlurMaximum = 0.8f;
+
+    private MotionBlur blur;
+
     void Start() {
         Listener = GetComponent<AudioListener>();
         renderer = GetComponent<LineRenderer>();
         source = GetComponent<AudioSource>();
+        blur = GetComponent<MotionBlur>();
 
         renderer.numPositions = 100;
         UpdateColor( Color );
@@ -112,6 +119,8 @@ public class Sticker : MonoBehaviour {
 
         Asteroid.Mod = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, SpeedMod_Min2, SpeedMod_Max2 );
         source.pitch = mapRange( maxDist, PitchMod_Min1, PitchMod_Max1, PitchMod_Min2, PitchMod_Max2 );
+
+        blur.blurAmount = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, BlurMinimum, BlurMaximum );
 
         var freq = mapRange( diff.magnitude, 20, 1, 0, 2 ) * 0.5f;
         freq = Mathf.Clamp( freq, 0, 2 );
