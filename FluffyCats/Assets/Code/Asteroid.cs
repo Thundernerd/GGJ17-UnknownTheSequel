@@ -26,13 +26,16 @@ public class Asteroid : MonoBehaviour {
 
         switch ( Color ) {
             case Colors.Red:
-                GetComponent<MeshRenderer>().material.color = new Color( 1, 0, 0 );
+                //GetComponent<MeshRenderer>().material.color = new Color( 1, 0, 0 );
+                GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 1, 0, 0 ) );
                 break;
             case Colors.Blue:
-                GetComponent<MeshRenderer>().material.color = new Color( 0, 0, 1 );
+                //GetComponent<MeshRenderer>().material.color = new Color( 0, 0, 1 );
+                GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 0, 0, 1 ) );
                 break;
             case Colors.Yellow:
-                GetComponent<MeshRenderer>().material.color = new Color( 1, 1, 0 );
+                //GetComponent<MeshRenderer>().material.color = new Color( 1, 1, 0 );
+                GetComponent<MeshRenderer>().material.SetColor( "_EmissionColor", new Color( 1, 1, 0 ) );
                 break;
         }
 
