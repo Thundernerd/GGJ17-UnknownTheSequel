@@ -862,8 +862,30 @@ MonoBehaviour:
   SineSpeed: 6
   SpeedMod_Min1: 40
   SpeedMod_Max1: 0
-  SpeedMod_Min2: 1
-  SpeedMod_Max2: 25
+  SpeedMod_Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 6.0436573
+      outSlope: 6.0436573
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 2.1303577
+      value: 13.875153
+      inSlope: 3.7286491
+      outSlope: 3.7286491
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 10
+      value: 25
+      inSlope: 1.4136409
+      outSlope: 1.4136409
+      tangentMode: 34
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   PitchMod_Min1: 40
   PitchMod_Max1: 0
   PitchMod_Min2: 0.2
