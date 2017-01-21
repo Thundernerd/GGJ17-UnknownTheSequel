@@ -14,8 +14,6 @@ public class Sticker : MonoBehaviour {
     public Transform stickOne;
     public Transform stickTwo;
 
-    public Colors Color;
-
     new public LineRenderer renderer;
 
     //public float MovementSpeed;
@@ -49,8 +47,6 @@ public class Sticker : MonoBehaviour {
         blur = GetComponent<MotionBlur>();
 
         renderer.numPositions = 100;
-        UpdateColor( Color );
-
 
         samples = new float[512];
 
@@ -91,28 +87,6 @@ public class Sticker : MonoBehaviour {
     void Update() {
         audioStuff();
 
-        if ( Input.GetButtonDown( "Fire1" ) ) {
-            var c = (int)Color;
-            c--;
-            if ( c < 0 ) {
-                c = System.Enum.GetValues( typeof( Colors ) ).Length - 1;
-            }
-            UpdateColor( (Colors)c );
-        } else if ( Input.GetButtonDown( "Fire2" ) ) {
-            var c = (int)Color;
-            c++;
-            if ( c > System.Enum.GetValues( typeof( Colors ) ).Length - 1 ) {
-                c = 0;
-            }
-            UpdateColor( (Colors)c );
-        }
-
-        //if(Input.GetButtonDown("Switch")) {
-        //    Debug.Log( "Switch" );
-        //    stickOne.GetComponent<Mover>().SwitchMode();
-        //    stickTwo.GetComponent<Mover>().SwitchMode();
-        //}
-
         var diff = stickTwo.position - stickOne.position;
         var middle = stickOne.transform.position + diff / 2f;
         var maxDist = diff.magnitude;
@@ -147,28 +121,8 @@ public class Sticker : MonoBehaviour {
             var other = hit.collider.gameObject;
             var a = other.GetComponent<Asteroid>();
             if ( a != null ) {
-                if ( a.Color == Color ) {
-                    // Explooosion
-                    Destroy( hit.collider.gameObject );
-                } else {
-                    iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
-                }
+                iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
             }
         }
-    }
-
-    void UpdateColor( Colors color ) {
-        switch ( color ) {
-            case Colors.Red:
-                GetComponent<LineRenderer>().material.color = new Color( 1, 0, 0 );
-                break;
-            case Colors.Blue:
-                GetComponent<LineRenderer>().material.color = new Color( 0, 0, 1 );
-                break;
-            case Colors.Yellow:
-                GetComponent<LineRenderer>().material.color = new Color( 1, 1, 0 );
-                break;
-        }
-        Color = color;
     }
 }
