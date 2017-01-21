@@ -970,8 +970,30 @@ MonoBehaviour:
   SineSpeed: 6
   SpeedMod_Min1: 40
   SpeedMod_Max1: 0
-  SpeedMod_Min2: 25
-  SpeedMod_Max2: 1
+  SpeedMod_Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 5.156196
+      outSlope: 5.156196
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 2.790277
+      value: 15.387216
+      inSlope: 0.65477055
+      outSlope: 0.65477055
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 10
+      value: 25
+      inSlope: 1.3333085
+      outSlope: 1.3333085
+      tangentMode: 34
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   PitchMod_Min1: 40
   PitchMod_Max1: 0
   PitchMod_Min2: 0.2
@@ -1086,6 +1108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1190786998829606, guid: 90b089e268259854c89cb1a540aaa7cd, type: 2}
+  MinSpawnTime: 0.5
+  MaxSpawnTime: 1.5
 --- !u!114 &1997834136
 MonoBehaviour:
   m_ObjectHideFlags: 0
