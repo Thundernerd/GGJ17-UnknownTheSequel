@@ -78,8 +78,7 @@ public class Sticker : MonoBehaviour {
         return low2 + ( high2 - low2 ) * ( value - low1 ) / ( high1 - low1 );
     }
 
-    void audioStuff() {
-        Debug.Log( currentValues[0] );
+    void audioStuff() {        
     }
 
     void Update() {
