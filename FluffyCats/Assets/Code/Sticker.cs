@@ -39,11 +39,14 @@ public class Sticker : MonoBehaviour {
 
     private MotionBlur blur;
 
+    private ScoreCounter counter;
     void Start() {
         Listener = GetComponent<AudioListener>();
         renderer = GetComponent<LineRenderer>();
         source = GetComponent<AudioSource>();
         blur = GetComponent<MotionBlur>();
+
+        counter = GameObject.Find( "Counter" ).GetComponent<ScoreCounter>();
 
         renderer.numPositions = 100;
 
@@ -89,6 +92,8 @@ public class Sticker : MonoBehaviour {
         var diff = stickTwo.position - stickOne.position;
         var middle = stickOne.transform.position + diff / 2f;
         var maxDist = diff.magnitude;
+
+        counter.AddScore( (int)maxDist );
 
         var startTime = SpeedMod_Curve.keys[0].time;
         var endTime = SpeedMod_Curve.keys[SpeedMod_Curve.length - 1].time;
