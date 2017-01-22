@@ -21,7 +21,7 @@ public class Killer : MonoBehaviour {
     public static void Die() {
         if ( _.lives == 0 ) {
             // End the game
-            PlayerPrefs.SetInt( "newscore", 100 );
+            PlayerPrefs.SetInt( "newscore", int.Parse( GameObject.Find( "Counter" ).GetComponent<Text>().text ) );
             PlayerPrefs.Save();
 
             Application.LoadLevel( "Highscore" );
