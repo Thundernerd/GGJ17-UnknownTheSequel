@@ -7,7 +7,7 @@ public class Killer : MonoBehaviour {
 
     private static Killer _;
 
-    public Image[] Lifes;
+    public SpriteRenderer[] Lifes;
     private int lives = 3;
 
     // Use this for initialization
@@ -16,8 +16,12 @@ public class Killer : MonoBehaviour {
     }
 
     public static void Die() {
-        _.timesBlinked = 0;
-        _.isBlinking = true;
+        if ( _.lives == 0 ) {
+            // End the game
+        } else {
+            _.timesBlinked = 0;
+            _.isBlinking = true;
+        }
     }
 
     private bool isBlinking = false;
