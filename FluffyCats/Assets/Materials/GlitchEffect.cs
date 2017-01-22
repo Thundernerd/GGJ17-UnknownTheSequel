@@ -103,9 +103,9 @@ public class GlitchEffect : ImageEffectBase {
     }
 
     IEnumerator glitch(float time) {
-        intensity = 1;
-        flipIntensity = 1;
-        colorIntensity = 1;
+        intensity = 0.6f;
+        flipIntensity = 0.6f;
+        colorIntensity = 1f;
 
         yield return new WaitForSeconds( time );
 

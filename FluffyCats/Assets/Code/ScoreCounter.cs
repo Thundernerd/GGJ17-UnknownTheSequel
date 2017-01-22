@@ -17,13 +17,19 @@ public class ScoreCounter : MonoBehaviour {
         return low2 + ( high2 - low2 ) * ( value - low1 ) / ( high1 - low1 );
     }
 
-    public void AddScore(float value) {
-        var scale = mapRange( value, 0, 40, 0.5f, 1.8f );
-        transform.localScale = new Vector3( scale, scale, 1 );
+    public void AddScore(float value, bool doScale = true) {
+        if(doScale) {
+            var scale = mapRange( value, 0, 40, 0.5f, 1.8f );
+            transform.localScale = new Vector3( scale, scale, 1 );
+        }
 
         score += value / 10;
                
         text.text = ((int)score).ToString();
+    }
+
+    public void Bump() {
+        if(!bumping ) StartCoroutine( bump() );
     }
 
     bool bumping = false;
@@ -34,15 +40,15 @@ public class ScoreCounter : MonoBehaviour {
             bumping = true;
         }
 
-        var upTime = 0.1f;
-        var downTime = 0.1f;
-        var waitTime = 0.5f;
+        var upTime = 0.5f;
+        var downTime = 0.2f;
+        var waitTime = 0.5f;        
 
-        //TODO scale by score
-
-        var amount = 0.1f;
+        var amount = 2f;
 
         iTween.ScaleAdd( gameObject, iTween.Hash( "amount", new Vector3( amount, amount ), "time", upTime, "easetype", iTween.EaseType.easeOutBack ) );
+        
+        iTween.ShakeRotation( gameObject, new Vector3( 0, 0, 20f ), upTime );
         yield return new WaitForSeconds( upTime );
         iTween.ScaleAdd( gameObject, iTween.Hash( "amount", new Vector3( -amount, -amount ), "time", downTime, "easetype", iTween.EaseType.linear ) );
         yield return new WaitForSeconds( downTime + waitTime );

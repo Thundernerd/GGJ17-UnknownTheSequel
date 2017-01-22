@@ -24,8 +24,13 @@ public class Pickup : MonoBehaviour {
     }
 
     public void Explode() {
+        var counter = GameObject.Find( "Counter" ).GetComponent<ScoreCounter>();
+        counter.AddScore( 300, false );
+        counter.Bump();
+
         var g = new GameObject();
         var s = g.AddComponent<AudioSource>();
+        s.volume = 0.5f;
         s.PlayOneShot( clip );
         g.AddComponent<KillInTime>().seconds = 2;
         Destroy( gameObject );
