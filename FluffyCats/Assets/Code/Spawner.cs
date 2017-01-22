@@ -42,7 +42,6 @@ public class Spawner : MonoBehaviour {
 
         rnd = Random.Range( 0, 1f );
         if ( rnd < .2f ) {
-            Debug.Log( "Spawning coin" );
             Instantiate( Pickup, GetPosition(), Quaternion.identity );
         }
 

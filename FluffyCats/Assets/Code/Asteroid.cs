@@ -22,13 +22,25 @@ public class Asteroid : MonoBehaviour {
     void Start() {
         body = GetComponent<Rigidbody>();
 
-        var diff = -transform.position;
-        var angle = Mathf.Atan2( diff.y, diff.x ) * Mathf.Rad2Deg;
-        angle += Random.Range( -20, 20 );
-        angle *= Mathf.Deg2Rad;
-        direction.x = Mathf.Cos( angle ) * Mathf.Rad2Deg;
-        direction.y = Mathf.Sin( angle ) * Mathf.Rad2Deg;
-        direction.Normalize();
+        if ( Random.Range( 0, 1f ) < 0.2f ) {
+            Debug.Log( "Targeted" );
+            var c1 = GameObject.Find( "Cylinder" );
+            var c2 = GameObject.Find( "Cylinder (1)" );
+
+            var diff = c2.transform.position - c1.transform.position;
+            var middle = c1.transform.position + diff / 2;
+
+            direction = middle - transform.position;
+            direction.Normalize();
+        } else {
+            var diff = -transform.position;
+            var angle = Mathf.Atan2( diff.y, diff.x ) * Mathf.Rad2Deg;
+            angle += Random.Range( -20, 20 );
+            angle *= Mathf.Deg2Rad;
+            direction.x = Mathf.Cos( angle ) * Mathf.Rad2Deg;
+            direction.y = Mathf.Sin( angle ) * Mathf.Rad2Deg;
+            direction.Normalize();
+        }
     }
 
     // Update is called once per frame
