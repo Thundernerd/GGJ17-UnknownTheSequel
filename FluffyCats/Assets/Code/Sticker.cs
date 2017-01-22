@@ -128,7 +128,7 @@ public class Sticker : MonoBehaviour {
         RaycastHit hit;
         if ( Physics.Raycast( r, out hit, diff.magnitude - 1 ) ) {
             var other = hit.collider.gameObject;
-            var a = other.GetComponent<Asteroid>();
+            var a = other.GetComponentInParent<Asteroid>();
             if ( a != null ) {
                 iTween.ShakePosition( Camera.main.gameObject, new Vector3( 0.6f, 0, 0 ), 0.4f );
                 Camera.main.GetComponent<GlitchEffect>().Glitch( 0.5f );

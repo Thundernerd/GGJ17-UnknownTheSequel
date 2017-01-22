@@ -32,6 +32,8 @@ public class Mover : MonoBehaviour {
 
     public Mover Other;
 
+    public float ExtraAngle = 10f;
+
     private float scale = 1;
     private Vector3 vscale = new Vector3();
 
@@ -61,7 +63,7 @@ public class Mover : MonoBehaviour {
             idleTimer += Time.deltaTime;
         } else {
             if ( idleTimer >= maxIdleTime ) {
-                //particles.Play();
+                particles.Play();
             }
 
             idleTimer = 0;
@@ -84,27 +86,25 @@ public class Mover : MonoBehaviour {
 
             var t = new Vector2( h, v );
             scale = mapRange( t.magnitude, 0, 1, 1, 2f );
-            vscale.Set( scale, scale, scale );
-            transform.localScale = vscale;
+            vscale.Set( scale, scale, scale );            
 
-            transform.localScale = vscale;
+            //transform.localScale = vscale;
             transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
         }
 
+
         var diff = Other.transform.position - transform.position;
+
+        if ( gameObject.name == "ParentRight" ) {
+            diff = transform.position - Other.transform.position;
+        }
+
         var angle = Mathf.Atan2( diff.y, diff.x ) * Mathf.Rad2Deg;
 
-        //transform.rotation = Quaternion.Euler( 0, 0, angle );
+        angle += ExtraAngle;
 
-    }
+        transform.rotation = Quaternion.Euler( 0, 0, angle );
 
-    public void SwitchMode() {
-        //Mode = !Mode;
-        //if( Mode ) {
-        //    ModePosition = transform.position;
-        //    Radius = ( Other.transform.position - transform.position ).magnitude;
-        //    ModePosition -= ( Other.transform.position - transform.position );
-        //}
     }
 
     public void Push( Vector3 direction ) {

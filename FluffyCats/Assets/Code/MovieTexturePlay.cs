@@ -9,7 +9,6 @@ public class MovieTexturePlay : MonoBehaviour {
     void Start() {
         if( Play ) {
             ( GetComponent<Renderer>().material.mainTexture as MovieTexture ).Play();
-        }
-        
+        }        
     }
 }

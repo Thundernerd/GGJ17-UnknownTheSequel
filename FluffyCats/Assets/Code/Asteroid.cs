@@ -19,8 +19,12 @@ public class Asteroid : MonoBehaviour {
 
     private Rigidbody body;
 
+    private float rotationSpeed = 5f;
+
     // Use this for initialization
     void Start() {
+        rotationSpeed = Random.Range( 40f, 50f );
+
         body = GetComponent<Rigidbody>();
 
         if (!IgnoreDirection) {
@@ -48,5 +52,7 @@ public class Asteroid : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         transform.position += direction * Time.deltaTime * Speed * Mod;
+
+        transform.Rotate( new Vector3( 0, 0, -rotationSpeed * Time.deltaTime ) );
     }
 }

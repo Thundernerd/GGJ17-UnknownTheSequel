@@ -11,8 +11,8 @@ public class Pusher : MonoBehaviour {
     private Transform p2;
 
     private void Start() {
-        p1 = GameObject.Find( "R4" ).transform;
-        p2 = GameObject.Find( "L2" ).transform;
+        p1 = GameObject.Find( "ParentLeft" ).transform;
+        p2 = GameObject.Find( "ParentRight" ).transform;
     }
 
     private void Update() {
