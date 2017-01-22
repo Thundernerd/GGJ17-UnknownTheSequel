@@ -61,7 +61,7 @@ public class Mover : MonoBehaviour {
             idleTimer += Time.deltaTime;
         } else {
             if ( idleTimer >= maxIdleTime ) {
-                particles.Play();
+                //particles.Play();
             }
 
             idleTimer = 0;
@@ -90,6 +90,12 @@ public class Mover : MonoBehaviour {
             transform.localScale = vscale;
             transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
         }
+
+        var diff = Other.transform.position - transform.position;
+        var angle = Mathf.Atan2( diff.y, diff.x ) * Mathf.Rad2Deg;
+
+        //transform.rotation = Quaternion.Euler( 0, 0, angle );
+
     }
 
     public void SwitchMode() {
