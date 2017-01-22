@@ -37,7 +37,7 @@ public class Pusher : MonoBehaviour {
                         var p = p1.position;
                         p.x = transform.position.x - 1;
                         p1.position = p;
-                        p1.GetComponent<Mover>().Push( new Vector3( 1, 0, 0 ) );
+                        p1.GetComponent<Mover>().Push( new Vector3( -1, 0, 0 ) );
                     }
                     if ( p2.position.x > transform.position.x ) {
                         var p = p2.position;
@@ -52,13 +52,13 @@ public class Pusher : MonoBehaviour {
                         var p = p1.position;
                         p.y = transform.position.y - 1;
                         p1.position = p;
-                        p1.GetComponent<Mover>().Push( new Vector3( 0, 1, 0 ) );
+                        p1.GetComponent<Mover>().Push( new Vector3( 0, -1, 0 ) );
                     }
                     if ( p2.position.y > transform.position.y ) {
                         var p = p2.position;
                         p.y = transform.position.y - 1;
                         p2.position = p;
-                        p2.GetComponent<Mover>().Push( new Vector3( 0, 1, 0 ) );
+                        p2.GetComponent<Mover>().Push( new Vector3( 0, -1, 0 ) );
                     }
                     break;
                 }
