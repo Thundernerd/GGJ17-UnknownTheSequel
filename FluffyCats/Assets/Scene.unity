@@ -1016,6 +1016,12 @@ MonoBehaviour:
   Prefab: {fileID: 1190786998829606, guid: 90b089e268259854c89cb1a540aaa7cd, type: 2}
   MinSpawnTime: 0.5
   MaxSpawnTime: 1.5
+  Stages:
+  - {x: 0.5, y: 1.5}
+  - {x: 0.5, y: 1}
+  - {x: 0.2, y: 0.6}
+  CurrentStage: 0
+  NextStageAfterXSeconds: 10
 --- !u!114 &1997834136
 MonoBehaviour:
   m_ObjectHideFlags: 0
