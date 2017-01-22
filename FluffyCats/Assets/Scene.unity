@@ -135,26 +135,6 @@ Prefab:
       propertyPath: Other
       value: 
       objectReference: {fileID: 516707161}
-    - target: {fileID: 198429874265563916, guid: eee3ab2a1abb8114bb3b4788526d55f7,
-        type: 2}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198429874265563916, guid: eee3ab2a1abb8114bb3b4788526d55f7,
-        type: 2}
-      propertyPath: randomSeed
-      value: 1602894549
-      objectReference: {fileID: 0}
-    - target: {fileID: 198429874265563916, guid: eee3ab2a1abb8114bb3b4788526d55f7,
-        type: 2}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198429874265563916, guid: eee3ab2a1abb8114bb3b4788526d55f7,
-        type: 2}
-      propertyPath: SizeModule.separateAxes
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eee3ab2a1abb8114bb3b4788526d55f7, type: 2}
   m_IsPrefabParent: 0
@@ -1534,31 +1514,6 @@ Prefab:
       propertyPath: Other
       value: 
       objectReference: {fileID: 1843028846}
-    - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
-        type: 2}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
-        type: 2}
-      propertyPath: randomSeed
-      value: -854178991
-      objectReference: {fileID: 0}
-    - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
-        type: 2}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
-        type: 2}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
-        type: 2}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05d122c8d106f2041b46eb37cd1038e2, type: 2}
   m_IsPrefabParent: 0
