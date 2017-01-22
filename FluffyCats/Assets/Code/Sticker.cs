@@ -86,12 +86,13 @@ public class Sticker : MonoBehaviour {
     void audioStuff() {
     }
 
+    public static float maxDist;
     void Update() {
         audioStuff();
 
         var diff = stickTwo.position - stickOne.position;
         var middle = stickOne.transform.position + diff / 2f;
-        var maxDist = diff.magnitude;
+        maxDist = diff.magnitude;
 
         counter.AddScore( (int)maxDist );
 

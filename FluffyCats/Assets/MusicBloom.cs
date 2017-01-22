@@ -16,7 +16,8 @@ public class MusicBloom : MonoBehaviour {
 	
 	
 	void Update () {
-        bloom.bloomIntensity = mapRange( Sticker.currentValues[Channel], 0, 0.03f, 2, 5 );
+        bloom.bloomIntensity = mapRange( Sticker.currentValues[Channel], 0, 0.03f, 0.86f, 1.2f );
+
 	}
 
     float mapRange( float value, float low1, float high1, float low2, float high2 ) {
