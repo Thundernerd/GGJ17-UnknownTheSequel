@@ -19,11 +19,11 @@ public class Asteroid : MonoBehaviour {
 
     private Rigidbody body;
 
-    private float rotationSpeed = 5f;
+    private float rotationSpeed = 15f;
 
     // Use this for initialization
     void Start() {
-        rotationSpeed = Random.Range( 40f, 50f );
+        rotationSpeed = Random.Range( 400, 450 );
 
         body = GetComponent<Rigidbody>();
 
