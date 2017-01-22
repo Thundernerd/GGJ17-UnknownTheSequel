@@ -121,7 +121,7 @@ public class Sticker : MonoBehaviour {
             var other = hit.collider.gameObject;
             var a = other.GetComponent<Asteroid>();
             if ( a != null ) {
-                iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
+                //iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
             }
         }
     }
