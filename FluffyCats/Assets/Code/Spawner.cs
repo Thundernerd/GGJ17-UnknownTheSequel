@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour {
 
     public float NextStageAfterXSeconds = 10f;
 
+    private System.DateTime coinStamp = System.DateTime.Now;
+
     // Use this for initialization
     void Start() {
         StartCoroutine( SpawnObj() );
@@ -24,7 +26,7 @@ public class Spawner : MonoBehaviour {
     void Update() {
         timer += Time.deltaTime;
 
-        if(timer >= NextStageAfterXSeconds) {
+        if ( timer >= NextStageAfterXSeconds ) {
             timer = 0;
             CurrentStage++;
 
@@ -42,7 +44,11 @@ public class Spawner : MonoBehaviour {
 
         rnd = Random.Range( 0, 1f );
         if ( rnd < .2f ) {
-            Instantiate( Pickup, GetPosition(), Quaternion.identity );
+            var ts = new System.TimeSpan( System.DateTime.Now.Ticks - coinStamp.Ticks );
+            if ( ts.Seconds > 5 ) {
+                coinStamp = System.DateTime.Now;
+                Instantiate( Pickup, GetPosition(), Quaternion.identity );
+            }
         }
 
         Instantiate( Prefab, GetPosition(), Quaternion.identity );
