@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public static bool doneTrial = false;
+    private bool startedMain = false;
 
     public GameObject Prefab;
     public GameObject Pickup;
@@ -31,6 +32,9 @@ public class Spawner : MonoBehaviour {
 
     private float timer = 0;
     void Update() {
+        if ( !startedMain )
+            return;
+
         timer += Time.deltaTime;
 
         if ( timer >= NextStageAfterXSeconds ) {
@@ -60,6 +64,7 @@ public class Spawner : MonoBehaviour {
     }
 
     IEnumerator SpawnObj() {
+        startedMain = true;
         var rnd = Random.Range( MinSpawnTime, MaxSpawnTime );
         yield return new WaitForSeconds( rnd );
 
