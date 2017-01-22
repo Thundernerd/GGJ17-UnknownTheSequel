@@ -39,8 +39,8 @@ public class Mover : MonoBehaviour {
 
     private ParticleSystem particles;
 
-    private float maxIdleTime = 0.55f;
-    private float idleTimer = 0.55f;
+    private float maxIdleTime = 0.1f;
+    private float idleTimer = 0.1f;
 
     // Use this for initialization
     void Start() {
@@ -59,7 +59,7 @@ public class Mover : MonoBehaviour {
     void Update() {
         var hAbs = Mathf.Abs( h );
         var vAbs = Mathf.Abs( v );
-        if ( hAbs <= 0.01f && vAbs <= 0.01f ) {
+        if ( hAbs <= 0.1f && vAbs <= 0.1f ) {
             idleTimer += Time.deltaTime;
         } else {
             if ( idleTimer >= maxIdleTime ) {
