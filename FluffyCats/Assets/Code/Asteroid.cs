@@ -23,8 +23,8 @@ public class Asteroid : MonoBehaviour {
         body = GetComponent<Rigidbody>();
 
         if ( Random.Range( 0, 1f ) < 0.2f ) {            
-            var c1 = GameObject.Find( "Cylinder" );
-            var c2 = GameObject.Find( "Cylinder (1)" );
+            var c1 = GameObject.Find( "L2" );
+            var c2 = GameObject.Find( "R4" );
 
             var diff = c2.transform.position - c1.transform.position;
             var middle = c1.transform.position + diff / 2;

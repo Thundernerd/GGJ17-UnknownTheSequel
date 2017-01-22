@@ -36,7 +36,7 @@ public class Mover : MonoBehaviour {
     private Vector3 vscale = new Vector3();
 
     private ParticleSystem particles;
-    
+
     private float maxIdleTime = 0.55f;
     private float idleTimer = 0.55f;
 
@@ -56,11 +56,11 @@ public class Mover : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         var hAbs = Mathf.Abs( h );
-        var vAbs = Mathf.Abs( v );        
-        if(hAbs <= 0.01f && vAbs <= 0.01f) {
+        var vAbs = Mathf.Abs( v );
+        if ( hAbs <= 0.01f && vAbs <= 0.01f ) {
             idleTimer += Time.deltaTime;
         } else {
-            if( idleTimer >= maxIdleTime ) {
+            if ( idleTimer >= maxIdleTime ) {
                 particles.Play();
             }
 
