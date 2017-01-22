@@ -1199,6 +1199,7 @@ GameObject:
   - component: {fileID: 1349614059}
   - component: {fileID: 1349614058}
   - component: {fileID: 1349614062}
+  - component: {fileID: 1349614063}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1219,7 +1220,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 06a2032a16f4d834fa8e77928f238c63, type: 2}
+  - {fileID: 2100000, guid: 2c4d4a1fcbe483a4e90866bddc79e247, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1277,12 +1278,27 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349614057}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04a8599aeec23a04f96007095ee90021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Play: 0
+--- !u!114 &1349614063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1349614057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c462167282f67e478db4ed977fd9797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Frames: []
+  CurrentIndex: 0
+  StartAfterXSeconds: 10
+  Running: 0
 --- !u!1 &1582048243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2096,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a4f877625eae34e48ad55628977e1cfb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: be67592d2d5450e4d9ed1d1dcea5c042, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -2202,7 +2218,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1997834127}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6517d90ca15c4e4086051aabca38a77, type: 3}
   m_Name: 
