@@ -22,8 +22,7 @@ public class Asteroid : MonoBehaviour {
     void Start() {
         body = GetComponent<Rigidbody>();
 
-        if ( Random.Range( 0, 1f ) < 0.2f ) {
-            Debug.Log( "Targeted" );
+        if ( Random.Range( 0, 1f ) < 0.2f ) {            
             var c1 = GameObject.Find( "Cylinder" );
             var c2 = GameObject.Find( "Cylinder (1)" );
 

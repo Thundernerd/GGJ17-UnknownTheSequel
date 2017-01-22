@@ -35,11 +35,18 @@ public class Mover : MonoBehaviour {
     private float scale = 1;
     private Vector3 vscale = new Vector3();
 
+    private ParticleSystem particles;
+    
+    private float maxIdleTime = 0.55f;
+    private float idleTimer = 0.55f;
+
     // Use this for initialization
     void Start() {
         scale = transform.localScale.x;
         vscale.Set( scale, scale, scale );
         body = GetComponent<Rigidbody>();
+
+        particles = GetComponentInChildren<ParticleSystem>();
     }
 
     float mapRange( float value, float low1, float high1, float low2, float high2 ) {
@@ -48,35 +55,40 @@ public class Mover : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if ( !Mode ) {
-            if ( pushTimer > 0 ) {
-                pushTimer -= Time.deltaTime;
-                if ( pushTimer < 0 ) {
-                    beingPushed = false;
-                }
-            }
-
-            if ( beingPushed ) {
-                h = Mathf.Lerp( h, 0, Drag );
-                v = Mathf.Lerp( v, 0, Drag );
-                transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
-            } else {
-                h = Mathf.Lerp( h, Input.GetAxis( HAxis ), Drag );
-                v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
-
-                var t = new Vector2( h, v );
-                scale = mapRange( t.magnitude, 0, 1, 1, 2f );
-                vscale.Set( scale, scale, scale );
-                transform.localScale = vscale;
-
-                transform.localScale = vscale;
-                transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
-            }
+        var hAbs = Mathf.Abs( h );
+        var vAbs = Mathf.Abs( v );        
+        if(hAbs <= 0.01f && vAbs <= 0.01f) {
+            idleTimer += Time.deltaTime;
         } else {
-            var pos = new Vector3( Mathf.Cos( Time.realtimeSinceStartup * RSpeed ) * Radius,
-                                    Mathf.Sin( Time.realtimeSinceStartup * RSpeed ) * Radius, 0 );
+            if( idleTimer >= maxIdleTime ) {
+                particles.Play();
+            }
 
-            transform.position = ModePosition + pos;
+            idleTimer = 0;
+        }
+
+        if ( pushTimer > 0 ) {
+            pushTimer -= Time.deltaTime;
+            if ( pushTimer < 0 ) {
+                beingPushed = false;
+            }
+        }
+
+        if ( beingPushed ) {
+            h = Mathf.Lerp( h, 0, Drag );
+            v = Mathf.Lerp( v, 0, Drag );
+            transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
+        } else {
+            h = Mathf.Lerp( h, Input.GetAxis( HAxis ), Drag );
+            v = Mathf.Lerp( v, Input.GetAxis( VAxis ), Drag );
+
+            var t = new Vector2( h, v );
+            scale = mapRange( t.magnitude, 0, 1, 1, 2f );
+            vscale.Set( scale, scale, scale );
+            transform.localScale = vscale;
+
+            transform.localScale = vscale;
+            transform.position += new Vector3( h, v ) * Speed * Time.deltaTime;
         }
     }
 
