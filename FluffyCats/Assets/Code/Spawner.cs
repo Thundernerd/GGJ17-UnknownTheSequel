@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
+    public static bool doneTrial = false;
+
     public GameObject Prefab;
     public GameObject Pickup;
     public bool SpawnPickup = false;
@@ -20,7 +22,11 @@ public class Spawner : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        StartCoroutine( SpawnObj() );
+        if ( doneTrial ) {
+            StartCoroutine( SpawnObj() );
+        } else {
+            StartCoroutine( InitialRound() );
+        }
     }
 
     private float timer = 0;
@@ -39,11 +45,23 @@ public class Spawner : MonoBehaviour {
 
     }
 
+    IEnumerator InitialRound() {
+        CreateObject( new Vector3( -20, 0, 0 ), Vector3.right );
+        CreateObject( new Vector3( 20, 0, 0 ), Vector3.left );
+        yield return new WaitForSeconds( 5 );
+        CreateObject( new Vector3( 0, 15, 0 ), Vector3.down );
+        CreateObject( new Vector3( 0, -15, 0 ), Vector3.up );
+
+        yield return new WaitForSeconds( 10 );
+        StartCoroutine( SpawnObj() );
+        yield break;
+    }
+
     IEnumerator SpawnObj() {
         var rnd = Random.Range( MinSpawnTime, MaxSpawnTime );
         yield return new WaitForSeconds( rnd );
 
-        if( SpawnPickup ) {
+        if ( SpawnPickup ) {
             rnd = Random.Range( 0, 1f );
             if ( rnd < .2f ) {
                 var ts = new System.TimeSpan( System.DateTime.Now.Ticks - coinStamp.Ticks );
@@ -68,5 +86,12 @@ public class Spawner : MonoBehaviour {
         var pos = new Vector3( x, y ).normalized * 25;
         pos.y = Mathf.Min( 15, Mathf.Max( -15, pos.y ) );
         return pos;
+    }
+
+    private void CreateObject( Vector3 position, Vector3 direction ) {
+        var g = Instantiate( Prefab, position, Quaternion.identity ) as GameObject;
+        var a = g.GetComponent<Asteroid>();
+        a.direction = direction;
+        a.IgnoreDirection = true;
     }
 }
