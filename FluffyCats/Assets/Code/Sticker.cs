@@ -43,7 +43,7 @@ public class Sticker : MonoBehaviour {
     void Start() {
         Listener = GetComponent<AudioListener>();
         renderer = GetComponent<LineRenderer>();
-        source = GetComponent<AudioSource>();
+        source = GameObject.Find("Buzzer").GetComponent<AudioSource>();
         blur = GetComponent<MotionBlur>();
 
         counter = GameObject.Find( "Counter" ).GetComponent<ScoreCounter>();
