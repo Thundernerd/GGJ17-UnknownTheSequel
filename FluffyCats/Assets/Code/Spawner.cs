@@ -47,9 +47,11 @@ public class Spawner : MonoBehaviour {
 
     IEnumerator InitialRound() {
         CreateObject( new Vector3( -20, 0, 0 ), Vector3.right );
-        CreateObject( new Vector3( 20, 0, 0 ), Vector3.left );
-        yield return new WaitForSeconds( 5 );
+        yield return new WaitForSeconds( 3 );
         CreateObject( new Vector3( 0, 15, 0 ), Vector3.down );
+        yield return new WaitForSeconds( 3 );
+        CreateObject( new Vector3( 20, 0, 0 ), Vector3.left );
+        yield return new WaitForSeconds( 3 );
         CreateObject( new Vector3( 0, -15, 0 ), Vector3.up );
 
         yield return new WaitForSeconds( 10 );
