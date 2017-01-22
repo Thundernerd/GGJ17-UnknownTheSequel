@@ -7,10 +7,15 @@ public class Pusher : MonoBehaviour {
     public bool Horizontal;
     public Sides Side;
 
+    public AudioClip Clip;
+
+    private AudioSource source;
+
     private Transform p1;
     private Transform p2;
 
     private void Start() {
+        source = GetComponent<AudioSource>();
         p1 = GameObject.Find( "ParentLeft" ).transform;
         p2 = GameObject.Find( "ParentRight" ).transform;
     }
@@ -84,7 +89,7 @@ public class Pusher : MonoBehaviour {
 
     private void OnTriggerEnter( Collider other ) {
         if ( other.tag.Equals( "Player" ) ) {
-            var mover = other.GetComponent<Mover>();
+            var mover = other.GetComponentInParent<Mover>();
             var dir = mover.Direction;
             if ( Horizontal ) {
                 dir.x *= -1;
@@ -92,6 +97,7 @@ public class Pusher : MonoBehaviour {
                 dir.y *= -1;
             }
             mover.Push( dir );
+            source.PlayOneShot( Clip );
         }
     }
 }
