@@ -21,6 +21,10 @@ public class Killer : MonoBehaviour {
     public static void Die() {
         if ( _.lives == 0 ) {
             // End the game
+            PlayerPrefs.SetInt( "newscore", 100 );
+            PlayerPrefs.Save();
+
+            Application.LoadLevel( "Highscore" );
         } else {
             _.timesBlinked = 0;
             _.isBlinking = true;
