@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Killer : MonoBehaviour {
 
     private static Killer _;
+    public AudioClip Clip;
+    private AudioSource source;
 
     public SpriteRenderer[] Lifes;
     private int lives = 3;
@@ -13,6 +15,7 @@ public class Killer : MonoBehaviour {
     // Use this for initialization
     void Start() {
         _ = this;
+        source = GetComponent<AudioSource>();
     }
 
     public static void Die() {
@@ -21,6 +24,7 @@ public class Killer : MonoBehaviour {
         } else {
             _.timesBlinked = 0;
             _.isBlinking = true;
+            _.source.PlayOneShot( _.Clip );
         }
     }
 
