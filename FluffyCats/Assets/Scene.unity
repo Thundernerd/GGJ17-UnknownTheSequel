@@ -1014,6 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1190786998829606, guid: 90b089e268259854c89cb1a540aaa7cd, type: 2}
+  Pickup: {fileID: 1190786998829606, guid: 3a6e4b0212441d2419e20614a71adf15, type: 2}
   MinSpawnTime: 0.5
   MaxSpawnTime: 1.5
 --- !u!114 &1997834136

@@ -98,9 +98,9 @@ public class Sticker : MonoBehaviour {
 
         source.pitch = mapRange( maxDist, PitchMod_Min1, PitchMod_Max1, PitchMod_Min2, PitchMod_Max2 );
 
-        if(blur != null ) {
+        if ( blur != null ) {
             blur.blurAmount = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, BlurMinimum, BlurMaximum );
-        }        
+        }
 
         var freq = mapRange( diff.magnitude, 20, 1, 0, 2 ) * 0.5f;
         freq = Mathf.Clamp( freq, 0, 2 );
@@ -126,6 +126,11 @@ public class Sticker : MonoBehaviour {
             var a = other.GetComponent<Asteroid>();
             if ( a != null ) {
                 //iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
+            } else {
+                var p = other.GetComponent<Pickup>();
+                if ( p != null ) {
+                    p.Explode();
+                }
             }
         }
     }

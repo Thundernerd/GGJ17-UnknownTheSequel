@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public GameObject Prefab;
+    public GameObject Pickup;
 
     public float MinSpawnTime = 0.5f;
     public float MaxSpawnTime = 1.5f;
@@ -18,16 +19,25 @@ public class Spawner : MonoBehaviour {
         var rnd = Random.Range( MinSpawnTime, MaxSpawnTime );
         yield return new WaitForSeconds( rnd );
 
+        rnd = Random.Range( 0, 1f );
+        if ( rnd < .2f ) {
+            Debug.Log( "Spawning coin" );
+            Instantiate( Pickup, GetPosition(), Quaternion.identity );
+        }
+
+        Instantiate( Prefab, GetPosition(), Quaternion.identity );
+
+        StartCoroutine( SpawnObj() );
+        yield break;
+    }
+
+    private Vector3 GetPosition() {
         var angle = Random.Range( 0, 360 ) * Mathf.Deg2Rad;
         var x = Mathf.Cos( angle ) * Mathf.Rad2Deg;
         var y = Mathf.Sin( angle ) * Mathf.Rad2Deg;
 
         var pos = new Vector3( x, y ).normalized * 25;
         pos.y = Mathf.Min( 15, Mathf.Max( -15, pos.y ) );
-
-        Instantiate( Prefab, pos, Quaternion.identity );
-
-        StartCoroutine( SpawnObj() );
-        yield break;
+        return pos;
     }
 }
