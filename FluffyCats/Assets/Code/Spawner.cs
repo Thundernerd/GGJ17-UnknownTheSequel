@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public static bool doneTrial = false;
+    public static bool StopSpawning = false;
     private bool startedMain = false;
 
     public GameObject Prefab;
@@ -33,6 +34,8 @@ public class Spawner : MonoBehaviour {
     private float timer = 0;
     void Update() {
         if ( !startedMain )
+            return;
+        if ( StopSpawning )
             return;
 
         timer += Time.deltaTime;
@@ -63,25 +66,34 @@ public class Spawner : MonoBehaviour {
         yield break;
     }
 
-    IEnumerator SpawnObj() {
-        startedMain = true;
-        var rnd = Random.Range( MinSpawnTime, MaxSpawnTime );
-        yield return new WaitForSeconds( rnd );
+    public void StartSpawning() {
+        StartCoroutine( SpawnObj() );
+    }
 
-        if ( SpawnPickup ) {
-            rnd = Random.Range( 0, 1f );
-            if ( rnd < .2f ) {
-                var ts = new System.TimeSpan( System.DateTime.Now.Ticks - coinStamp.Ticks );
-                if ( ts.Seconds > 5 ) {
-                    coinStamp = System.DateTime.Now;
-                    Instantiate( Pickup, GetPosition(), Quaternion.identity );
+    IEnumerator SpawnObj() {
+        if ( !StopSpawning ) {
+            startedMain = true;
+            var rnd = Random.Range( MinSpawnTime, MaxSpawnTime );
+            yield return new WaitForSeconds( rnd );
+
+            if ( SpawnPickup ) {
+                rnd = Random.Range( 0, 1f );
+                if ( rnd < .2f ) {
+                    var ts = new System.TimeSpan( System.DateTime.Now.Ticks - coinStamp.Ticks );
+                    if ( ts.Seconds > 5 ) {
+                        coinStamp = System.DateTime.Now;
+                        Instantiate( Pickup, GetPosition(), Quaternion.identity );
+                    }
                 }
             }
+
+            if ( !StopSpawning ) {
+                Instantiate( Prefab, GetPosition(), Quaternion.identity );
+            }
+
+            StartCoroutine( SpawnObj() );
         }
 
-        Instantiate( Prefab, GetPosition(), Quaternion.identity );
-
-        StartCoroutine( SpawnObj() );
         yield break;
     }
 
