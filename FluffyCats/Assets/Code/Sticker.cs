@@ -130,7 +130,8 @@ public class Sticker : MonoBehaviour {
             var other = hit.collider.gameObject;
             var a = other.GetComponent<Asteroid>();
             if ( a != null ) {
-                //iTween.ShakePosition( Camera.main.gameObject, new Vector3( 1, 1, 0 ), 0.25f );
+                iTween.ShakePosition( Camera.main.gameObject, new Vector3( 0.6f, 0, 0 ), 0.4f );
+                Camera.main.GetComponent<GlitchEffect>().Glitch( 0.5f );
             } else {
                 var p = other.GetComponent<Pickup>();
                 if ( p != null ) {
