@@ -19,7 +19,7 @@ public class ScoreCounter : MonoBehaviour {
 
     public void AddScore(float value, bool doScale = true) {
         if(doScale) {
-            var scale = mapRange( value, 0, 40, 0.5f, 2.3f );
+            var scale = mapRange( value, 0, 40, 1, 4 );
             transform.localScale = new Vector3( scale, scale, 1 );
         }
 

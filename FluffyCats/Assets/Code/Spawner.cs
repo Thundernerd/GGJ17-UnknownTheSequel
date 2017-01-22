@@ -58,7 +58,7 @@ public class Spawner : MonoBehaviour {
         yield return new WaitForSeconds( 3 );
         CreateObject( new Vector3( 0, -15, 0 ), Vector3.up );
 
-        yield return new WaitForSeconds( 10 );
+        yield return new WaitForSeconds( 3 );
         StartCoroutine( SpawnObj() );
         yield break;
     }
