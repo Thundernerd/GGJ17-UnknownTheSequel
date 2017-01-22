@@ -10,9 +10,30 @@ public class Spawner : MonoBehaviour {
     public float MinSpawnTime = 0.5f;
     public float MaxSpawnTime = 1.5f;
 
+    public List<Vector2> Stages;
+    public int CurrentStage = 0;
+
+    public float NextStageAfterXSeconds = 10f;
+
     // Use this for initialization
     void Start() {
         StartCoroutine( SpawnObj() );
+    }
+
+    private float timer = 0;
+    void Update() {
+        timer += Time.deltaTime;
+
+        if(timer >= NextStageAfterXSeconds) {
+            timer = 0;
+            CurrentStage++;
+
+            CurrentStage = Mathf.Clamp( CurrentStage, 0, Stages.Count - 1 );
+
+            MinSpawnTime = Stages[CurrentStage].x;
+            MaxSpawnTime = Stages[CurrentStage].y;
+        }
+
     }
 
     IEnumerator SpawnObj() {
