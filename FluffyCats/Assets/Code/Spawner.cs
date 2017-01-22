@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour {
 
     public GameObject Prefab;
     public GameObject Pickup;
+    public bool SpawnPickup = false;
 
     public float MinSpawnTime = 0.5f;
     public float MaxSpawnTime = 1.5f;
@@ -42,12 +43,14 @@ public class Spawner : MonoBehaviour {
         var rnd = Random.Range( MinSpawnTime, MaxSpawnTime );
         yield return new WaitForSeconds( rnd );
 
-        rnd = Random.Range( 0, 1f );
-        if ( rnd < .2f ) {
-            var ts = new System.TimeSpan( System.DateTime.Now.Ticks - coinStamp.Ticks );
-            if ( ts.Seconds > 5 ) {
-                coinStamp = System.DateTime.Now;
-                Instantiate( Pickup, GetPosition(), Quaternion.identity );
+        if( SpawnPickup ) {
+            rnd = Random.Range( 0, 1f );
+            if ( rnd < .2f ) {
+                var ts = new System.TimeSpan( System.DateTime.Now.Ticks - coinStamp.Ticks );
+                if ( ts.Seconds > 5 ) {
+                    coinStamp = System.DateTime.Now;
+                    Instantiate( Pickup, GetPosition(), Quaternion.identity );
+                }
             }
         }
 
