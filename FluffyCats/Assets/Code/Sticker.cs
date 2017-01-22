@@ -27,8 +27,7 @@ public class Sticker : MonoBehaviour {
     [Header( "Speed mod" )]
     public float SpeedMod_Min1 = 40;
     public float SpeedMod_Max1 = 0;
-    public float SpeedMod_Min2 = 1;
-    public float SpeedMod_Max2 = 25;
+    public AnimationCurve SpeedMod_Curve;
     [Header( "Pitch mod" )]
     public float PitchMod_Min1 = 0;
     public float PitchMod_Max1 = 20;
@@ -81,7 +80,7 @@ public class Sticker : MonoBehaviour {
         return low2 + ( high2 - low2 ) * ( value - low1 ) / ( high1 - low1 );
     }
 
-    void audioStuff() {        
+    void audioStuff() {
     }
 
     void Update() {
@@ -91,7 +90,12 @@ public class Sticker : MonoBehaviour {
         var middle = stickOne.transform.position + diff / 2f;
         var maxDist = diff.magnitude;
 
-        Asteroid.Mod = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, SpeedMod_Min2, SpeedMod_Max2 );
+        var startTime = SpeedMod_Curve.keys[0].time;
+        var endTime = SpeedMod_Curve.keys[SpeedMod_Curve.length - 1].time;
+
+        var mod = mapRange( maxDist, SpeedMod_Min1, SpeedMod_Max1, startTime, endTime );
+        Asteroid.Mod = SpeedMod_Curve.Evaluate( mod );
+
         source.pitch = mapRange( maxDist, PitchMod_Min1, PitchMod_Max1, PitchMod_Min2, PitchMod_Max2 );
 
         if(blur != null ) {
