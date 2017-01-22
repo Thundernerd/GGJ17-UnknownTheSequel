@@ -155,6 +155,11 @@ Prefab:
       propertyPath: SizeModule.separateAxes
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114319577333708172, guid: eee3ab2a1abb8114bb3b4788526d55f7,
+        type: 2}
+      propertyPath: ExtraAngle
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eee3ab2a1abb8114bb3b4788526d55f7, type: 2}
   m_IsPrefabParent: 0
@@ -651,6 +656,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3307962fa60ba0e4f8e40e9d794c841d, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &444838202
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.9821372
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.3611046
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 6.0600014
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801781464468284, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f7bcac219c41e3547b298fb357b5170d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &449197460
 GameObject:
@@ -1542,12 +1589,12 @@ Prefab:
     - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
         type: 2}
       propertyPath: randomSeed
-      value: -854178991
+      value: 1468219912
       objectReference: {fileID: 0}
     - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
         type: 2}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198498355618185876, guid: 05d122c8d106f2041b46eb37cd1038e2,
         type: 2}
@@ -1558,6 +1605,11 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943644510911972, guid: 05d122c8d106f2041b46eb37cd1038e2,
+        type: 2}
+      propertyPath: ExtraAngle
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05d122c8d106f2041b46eb37cd1038e2, type: 2}
@@ -1616,7 +1668,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a5da6e241809eb84ca1710919b5a2f73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6bb884ca8d0ba94dae912cc74a59730, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1752,7 +1804,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.06541956, g: 0.07352942, b: 0.06950245, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1838,8 +1890,8 @@ MonoBehaviour:
     m_RotationOrder: 0
   PitchMod_Min1: 40
   PitchMod_Max1: 0
-  PitchMod_Min2: 0.2
-  PitchMod_Max2: 1.2
+  PitchMod_Min2: 0.5
+  PitchMod_Max2: 1
   BlurMinimum: 0.1
   BlurMaximum: 0.6
 --- !u!120 &1997834134
@@ -1995,10 +2047,10 @@ MonoBehaviour:
   tweakMode: 0
   screenBlendMode: 1
   hdr: 0
-  sepBlurSpread: 2.5
+  sepBlurSpread: 1.3
   quality: 1
-  bloomIntensity: 2
-  bloomThreshold: 0.5
+  bloomIntensity: 0.96
+  bloomThreshold: 0.07
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 2
   hollywoodFlareBlurIterations: 2
@@ -2030,7 +2082,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a4f877625eae34e48ad55628977e1cfb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.87
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2127,7 +2179,7 @@ MonoBehaviour:
   curShader: {fileID: 4800000, guid: 90c5e26eabd9f9448b40a96cb3e5fe60, type: 3}
   Distortion: 0.01
   InputGamma: 2.4
-  OutputGamma: 1
+  OutputGamma: 1.47
 --- !u!114 &1997834141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2150,7 +2202,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1997834127}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6517d90ca15c4e4086051aabca38a77, type: 3}
   m_Name: 
