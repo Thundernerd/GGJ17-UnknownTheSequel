@@ -35,7 +35,7 @@ public class CRT : MonoBehaviour {
             material.SetFloat( "_Distortion", Distortion );
             material.SetFloat( "_InputGamma", InputGamma );
             material.SetFloat( "_OutputGamma", OutputGamma );
-            material.SetVector( "_TextureSize", new Vector2( 256f, 256f ) );
+            material.SetVector( "_TextureSize", new Vector2( 512f, 512f ) );
             Graphics.Blit( sourceTexture, destTexture, material );
         } else {
             Graphics.Blit( sourceTexture, destTexture );
